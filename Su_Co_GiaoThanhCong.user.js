@@ -2,7 +2,7 @@
 // @name         Sự Cố
 // @namespace    ??
 // @version      1.6.8
-// @description  Cập nhật DELIVER_FAIL / DELIVER_SUCCESS hàng loạt. v1.6.8: gọn dòng trạng thái (✔ Sẵn sàng). v1.6.7: tô màu kết quả (đỏ/xanh/vàng) + dòng thống kê nhanh. Nhận diện thất bại qua failCode. Xuất Excel. Cột "Tích TC". Mở qua "Hạ sự cố". Ký X-Sig.
+// @description  ??
 // @author       TNT Ops
 // @match        https://nhanh.ghn.vn/*
 // @run-at       document-start
@@ -735,7 +735,7 @@
    *   React render lại menu → MutationObserver tự chèn lại.
    * ========================================================= */
   const MENU_ITEM_ID = 'ghnb-menu-item';
-  const MENU_LABEL = 'Hạ sự cố';
+  const MENU_LABEL = 'Hạ sự cố/Giao Thành Công';
   const MENU_REF_LABEL = 'Xử lý sự cố'; // mục mẫu để sao kiểu dáng & vị trí
 
   function openPanel() {
