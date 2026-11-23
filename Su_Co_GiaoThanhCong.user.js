@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Sự Cố
 // @namespace    ??
-// @version      1.6.7
-// @description  Cập nhật DELIVER_FAIL / DELIVER_SUCCESS hàng loạt. v1.6.7: tô màu kết quả (đỏ/xanh/vàng) + dòng thống kê nhanh. Nhận diện thất bại qua failCode. Xuất Excel. Cột "Tích TC". Mở qua "Hạ sự cố". Ký X-Sig.
+// @version      1.6.8
+// @description  Cập nhật DELIVER_FAIL / DELIVER_SUCCESS hàng loạt. v1.6.8: gọn dòng trạng thái (✔ Sẵn sàng). v1.6.7: tô màu kết quả (đỏ/xanh/vàng) + dòng thống kê nhanh. Nhận diện thất bại qua failCode. Xuất Excel. Cột "Tích TC". Mở qua "Hạ sự cố". Ký X-Sig.
 // @author       TNT Ops
 // @match        https://nhanh.ghn.vn/*
 // @run-at       document-start
@@ -859,7 +859,6 @@
         </div>
         <div id="ghnb-prog" style="margin-top:8px;font-weight:600"></div>
         <div id="ghnb-stats" style="margin-top:6px;font-size:12.5px;color:#334155;padding:6px 8px;background:#F8FAFC;border-radius:6px;display:none"></div>
-        <div style="font-size:11px;color:#888;margin-top:4px">Bấm vào 1 dòng để xem payload/response trong Console (F12).</div>
         <label>Dữ liệu xuất (tự điền sau khi chạy – dán thẳng vào Google Sheets)</label>
         <textarea id="ghnb-export" readonly style="height:90px;font-size:11px;white-space:pre;overflow:auto"></textarea>
         <div id="ghnb-sum" style="font-size:12px;color:#555;margin-top:4px"></div>
@@ -1026,10 +1025,11 @@
 
   function renderAuthStatus() {
     if (!ui.auth) return;
-    const t = state.token;
-    ui.auth.innerHTML =
-      `Token: ${t ? `<span class="ok">✔ đã bắt (…${esc(t.slice(-8))})</span>` : '<span class="err">✘ chưa có – thao tác 1 lần trên trang</span>'}` +
-      ` &nbsp;|&nbsp; Kho: ${state.warehouseId ? `<span class="ok">${esc(state.warehouseId)}</span>` : '<span class="err">chưa có</span>'}`;
+    // Chỉ hiện trạng thái gọn: đủ token + mã kho = Sẵn sàng
+    const ready = !!(state.token && state.warehouseId);
+    ui.auth.innerHTML = ready
+      ? '<span class="ok">✔ Sẵn sàng</span>'
+      : '<span class="err">✘ Chưa sẵn sàng – thao tác 1 lần trên trang</span>';
     if (ui.wh && document.activeElement !== ui.wh) ui.wh.value = state.warehouseId;
   }
 
