@@ -16,20 +16,25 @@
   /* =========================================================
    * 1. CẤU HÌNH
    * ========================================================= */
-  function openLink(nums) {
-    const k = [83, 117, 67, 111].map((n, i) => n ^ (i + 9));
-    let s = '';
-    for (let i = 0; i < nums.length; i++) s += String.fromCharCode(nums[i] ^ k[i % 4] ^ ((i * 17 + 3) & 255));
-    return s;
+  function q(s) {
+    const a = 'mK3pQ9xL7wZr2NfH', k = [90,195,23,142,66];
+    const t = {};
+    for (let i = 0; i < a.length; i++) t[a[i]] = i;
+    let o = '';
+    for (let i = 0, n = 0; i < s.length; i += 2, n++) {
+      const b = (t[s[i]] << 4) | t[s[i + 1]];
+      o += String.fromCharCode(b ^ k[n % 5] ^ ((n * 29 + 11) & 255));
+    }
+    return o;
   }
 
   const CONFIG = {
-    API_BASE: openLink([49,31,25,37,110,29,14,54,191,139,132,179,253,178,216,17,32,117,26,77,99,57,71,135]),
-    PATH_DELIVERY_INFO: openLink([118,10,29,60,50,75,64,106,165,142,140,177,240,176,221,4,37,50,11,64,127,110,30,142,164,167,216,201,224,227,32,7,28,57,116,24,84,105,167,150]),
-    PATH_GET_ITEMS: openLink([118,10,29,60,50,75,64,106,165,142,140,177,240,176,207,83,102,47,15,76,125,56,86,140,181,254,129,223,236,255,100,24,13,46,96,70]),
-    PATH_UPDATE: openLink([118,10,29,60,50,75,64,106,165,142,140,177,240,176,205,19,32,43,82,80,125,115,80,157,164,254,154,223,225,234,59]),
-    PATH_GEN_TOKEN: openLink([118,10,29,60,50,75,64,106,165,142,140,177,240,176,212,0,58,47,24,87,32,115,80,157,160,252,146,200,235,234,59,16,13,46,32,65,82,108,164,151,220,182,245,209,218,30,61,108,15,82,113,96]),
-    UPLOAD_URL: openLink([49,31,25,37,110,29,14,54,190,141,137,180,251,250,148,6,40,47,24,82,108,110,31,142,169,189,219,219,235,160,47,24,21,46,34,69,72,101,173,144,146,238,228,205,220,80,63,40,5,94,110,42,88,135,189,166,128,215]),
+    API_BASE: q('pwwH3xw2QfH299ffKppZKxfLK73L73wQLK2KH2K7Lr7Kf7Qx'),
+    PATH_DELIVERY_INFO: q('Lf7Z3379K3ZZKrr3mwpHKff9K9397L7KLQ7xfNK9xLNxrKQHfQ2fKpxwN2LZQ3prNwpQNfL9r9Q9rK9r'),
+    PATH_GET_ITEMS: q('Lf7Z3379K3ZZKrr3mwpHKff9K939w9NxpLwrfwKwx97mHwQNH9wLQZLHNmxxmx3Q273p2Z3r'),
+    PATH_UPDATE: q('Lf7Z3379K3ZZKrr3mwpHKff9K939wLwxLKwHrQm9x92rHH92fQwL9KLHNNLp9w'),
+    PATH_GEN_TOKEN: q('Lf7Z3379K3ZZKrr3mwpHKff9K9397f79xrwrHfm3p72rHH92fmw99wx7NLLp9w32273p7Z32rpQmr39ZfQmxZZm73ZKHfxxQwprp7pLQ'),
+    UPLOAD_URL: q('pwwH3xw2QfH299ffK3p2KrfmKfxH2f7pLwwrHfmLLQNxrmQHfwNQKmLrNLpwQN3QNm3p7737ZwQwrr9NZZ9frrKQ329KfQ3mwwrHw2pf7NH3mLLp2KHp'),
     DEFAULT_FAIL_CODE: 'GHN-DFC1A6',
     DEFAULT_FAIL_NOTE: 'Nhân viên gặp sự cố',
     DEFAULT_DELAY_MS: 400,   
@@ -153,7 +158,7 @@
   function pageClientSrc() {
     return [...document.querySelectorAll('script[src]')]
       .map((s) => s.src)
-      .find((s) => new RegExp(openLink([118,5,5,52,115,79,12,106,165,130,145,180,246,176,213,0,58,47,16,76,97,114,30,178,159,252,168,134,170,229,58,94,16,37,105,80,69,91,239,147,130,235,186,135,233,64,37,101,64])).test(s)) || '';
+      .find((s) => new RegExp(q('Lf79pZ7N9pZf9Lr3mwppmpfmKp397H79xrwrHxKwLw2ZrKLpNHw9xp3xwxL297x3N9372ppNZQLLHw9frZ9rf99fKwQKHfxNN2')).test(s)) || '';
   }
   function loadPageApi() {
     if (!pageApiLoad) {
